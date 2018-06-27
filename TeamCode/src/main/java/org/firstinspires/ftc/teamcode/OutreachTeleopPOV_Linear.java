@@ -58,7 +58,7 @@ public class OutreachTeleopPOV_Linear extends LinearOpMode {
     HardwareOutreach robot           = new HardwareOutreach();   // Use a Pushbot's hardware
                                                                // could also use HardwarePushbotMatrix class.
     double          clawOffset      = 0;                       // Servo mid position
-    final double    CLAW_SPEED      = 0.02 ;                   // sets rate to move servo
+    final double    CLAW_SPEED      = 0.05 ;                   // sets rate to move servo
 
     @Override
     public void runOpMode() {
@@ -86,8 +86,24 @@ public class OutreachTeleopPOV_Linear extends LinearOpMode {
             // Run wheels in POV mode (note: The joystick goes negative when pushed forwards, so negate it)
             // In this mode the Left stick moves the robot fwd and back, the Right stick turns left and right.
             // This way it's also easy to just drive straight, or just turn.
-            drive = -gamepad1.left_stick_y;
-            turn  =  gamepad1.right_stick_x;
+            drive = gamepad1.left_stick_y;
+            turn  = gamepad1.left_stick_x;
+
+            if (drive > 0) {
+                drive = Math.pow(drive, 2);
+            } else if (drive < 0) {
+                drive = -Math.pow(drive, 2);
+            } else {
+                drive = 0;
+            }
+
+            if (turn > 0) {
+                turn = -Math.pow(turn, 2);
+            } else if (turn < 0) {
+                turn = Math.pow(turn, 2);
+            } else {
+                turn = 0;
+            }
 
             // Combine drive and turn for blended motion.
             left  = drive + turn;
@@ -117,9 +133,9 @@ public class OutreachTeleopPOV_Linear extends LinearOpMode {
             robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
             // Use gamepad buttons to move arm up (Y) and down (A)
-            if (gamepad1.y)
+            if (gamepad1.a)
                 robot.leftArm.setPower(robot.ARM_UP_POWER);
-            else if (gamepad1.a)
+            else if (gamepad1.y)
                 robot.leftArm.setPower(robot.ARM_DOWN_POWER);
             else
                 robot.leftArm.setPower(0.0);
