@@ -50,9 +50,9 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Pushbot: Teleop POV", group="Pushbot")
+@TeleOp(name="Outreach: Teleop Arcade", group="Outreach")
 //@Disabled
-public class OutreachTeleopPOV_Linear extends LinearOpMode {
+public class OutreachTeleopArcade extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareOutreach robot           = new HardwareOutreach();   // Use a Pushbot's hardware
