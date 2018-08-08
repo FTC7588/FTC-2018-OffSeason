@@ -58,6 +58,8 @@ public class HardwareLemon
     public DcMotor  frontRightDrive  = null;
     public DcMotor  rearRightDrive   = null;
     public DcMotor  rearLeftDrive    = null;
+    public DcMotor  rightFlywheel    = null;
+    public DcMotor  leftFlywheel     = null;
 
 
     /* local OpMode members. */
@@ -75,20 +77,27 @@ public class HardwareLemon
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        frontLeftDrive  = hwMap.get(DcMotor.class, "left_drive");
-        frontRightDrive = hwMap.get(DcMotor.class, "right_drive");
+        frontLeftDrive  = hwMap.get(DcMotor.class, "front_left_drive");
+        frontRightDrive = hwMap.get(DcMotor.class, "front_right_drive");
         rearLeftDrive = hwMap.get(DcMotor.class, "rear_left_drive");
         rearRightDrive = hwMap.get(DcMotor.class, "rear_right_drive");
+        rightFlywheel = hwMap.get(DcMotor.class, "right_flywheel");
+        leftFlywheel = hwMap.get(DcMotor.class, "left_flywheel");
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
         rearRightDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         rearLeftDrive.setDirection(DcMotor.Direction.FORWARD);
+        rightFlywheel.setDirection(DcMotor.Direction.FORWARD);
+        leftFlywheel.setDirection(DcMotor.Direction.REVERSE);
+
 
         // Set all motors to zero power
         rearLeftDrive.setPower(0);
         rearRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
         frontRightDrive.setPower(0);
+        rightFlywheel.setPower(0);
+        leftFlywheel.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -96,14 +105,18 @@ public class HardwareLemon
         rearLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightFlywheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftFlywheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
        frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
        rearLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
        rearRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+       rightFlywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+       leftFlywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         // Define and initialize ALL installed servos.
-      
+
     }
  }
 
