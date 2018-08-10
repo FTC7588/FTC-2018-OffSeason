@@ -60,6 +60,8 @@ public class HardwareLemon
     public DcMotor  rearLeftDrive    = null;
     public DcMotor  rightFlywheel    = null;
     public DcMotor  leftFlywheel     = null;
+    public DcMotor  shootArm1        = null;
+    public DcMotor  shootArm2        = null;
     public Servo    firstServo       = null;
     public Servo    secondServo      = null;
 
@@ -86,12 +88,16 @@ public class HardwareLemon
         rearRightDrive = hwMap.get(DcMotor.class, "rear_right_drive");
         rightFlywheel = hwMap.get(DcMotor.class, "right_flywheel");
         leftFlywheel = hwMap.get(DcMotor.class, "left_flywheel");
+        shootArm1 = hwMap.get(DcMotor.class, "shoot_arm1");
+        shootArm2 = hwMap.get(DcMotor.class, "shoot_arm2");
         frontRightDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
         rearRightDrive.setDirection(DcMotor.Direction.FORWARD);// Set to FORWARD if using AndyMark motors
         rearLeftDrive.setDirection(DcMotor.Direction.FORWARD);
         rightFlywheel.setDirection(DcMotor.Direction.FORWARD);
         leftFlywheel.setDirection(DcMotor.Direction.REVERSE);
+        shootArm1.setDirection(DcMotor.Direction.FORWARD);
+        shootArm2.setDirection(DcMotor.Direction.REVERSE);
 
 
         // Set all motors to zero power
@@ -101,6 +107,8 @@ public class HardwareLemon
         frontRightDrive.setPower(0);
         rightFlywheel.setPower(0);
         leftFlywheel.setPower(0);
+        shootArm1.setPower(0);
+        shootArm2.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -110,6 +118,9 @@ public class HardwareLemon
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         rightFlywheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         leftFlywheel.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        shootArm1.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        shootArm2.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
 
         frontLeftDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
        frontRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -117,6 +128,8 @@ public class HardwareLemon
        rearRightDrive.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
        rightFlywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
        leftFlywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+       shootArm1.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
+       shootArm2.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         // Define and initialize ALL installed servos.
         firstServo = hwMap.get(Servo.class, "first_servo");
