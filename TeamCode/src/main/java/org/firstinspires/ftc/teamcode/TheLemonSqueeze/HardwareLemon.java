@@ -60,6 +60,9 @@ public class HardwareLemon
     public DcMotor  rearLeftDrive    = null;
     public DcMotor  rightFlywheel    = null;
     public DcMotor  leftFlywheel     = null;
+    public Servo    firstServo       = null;
+    public Servo    secondServo      = null;
+
 
 
     /* local OpMode members. */
@@ -116,6 +119,8 @@ public class HardwareLemon
        leftFlywheel.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.FLOAT);
 
         // Define and initialize ALL installed servos.
+        firstServo = hwMap.get(Servo.class, "first_servo");
+        secondServo = hwMap.get(Servo.class, "second_servo");
 
     }
  }
