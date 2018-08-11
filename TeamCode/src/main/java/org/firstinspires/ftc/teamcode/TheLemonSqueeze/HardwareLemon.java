@@ -63,7 +63,6 @@ public class HardwareLemon
     public DcMotor  shootArm1        = null;
     public DcMotor  shootArm2        = null;
     public Servo    firstServo       = null;
-    public Servo    secondServo      = null;
 
 
 
@@ -133,7 +132,6 @@ public class HardwareLemon
 
         // Define and initialize ALL installed servos.
         firstServo = hwMap.get(Servo.class, "first_servo");
-        secondServo = hwMap.get(Servo.class, "second_servo");
 
     }
  }
