@@ -73,10 +73,10 @@ public class HardwareTestbot
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        rearLeftDrive  = hwMap.get(DcMotor.class, "left_drive");
-        rearRightDrive = hwMap.get(DcMotor.class, "right_drive");
-        frontLeftDrive  = hwMap.get(DcMotor.class, "left_drive");
-        frontRightDrive = hwMap.get(DcMotor.class, "right_drive");
+        rearLeftDrive  = hwMap.get(DcMotor.class, "rearLeftDrive");
+        rearRightDrive = hwMap.get(DcMotor.class, "rearRightDrive");
+        frontLeftDrive  = hwMap.get(DcMotor.class, "frontLeftDrive");
+        frontRightDrive = hwMap.get(DcMotor.class, "frontRightDrive");
         rearLeftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rearRightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
