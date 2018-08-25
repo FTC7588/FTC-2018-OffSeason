@@ -57,6 +57,9 @@ public class HardwareTestbot
     public DcMotor  rearRightDrive  = null;
     public DcMotor  frontLeftDrive   = null;
     public DcMotor  frontRightDrive  = null;
+    public DcMotor  liftArm          =null;
+    public Servo    rightArm         =null;
+    public Servo    leftArm          =null;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -77,16 +80,22 @@ public class HardwareTestbot
         rearRightDrive = hwMap.get(DcMotor.class, "rearRightDrive");
         frontLeftDrive  = hwMap.get(DcMotor.class, "frontLeftDrive");
         frontRightDrive = hwMap.get(DcMotor.class, "frontRightDrive");
+        liftArm = hwMap.get(DcMotor.class, "liftArm");
+        rightArm = hwMap.get(Servo.class, "rightArm");
+        leftArm = hwMap.get(Servo.class, "leftArm");
+
         rearLeftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         rearRightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
         frontLeftDrive.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
         frontRightDrive.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
+        liftArm.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
 
         // Set all motors to zero power
         rearLeftDrive.setPower(0);
         rearRightDrive.setPower(0);
         frontLeftDrive.setPower(0);
         frontRightDrive.setPower(0);
+        liftArm.setPower(0);
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
@@ -94,6 +103,10 @@ public class HardwareTestbot
         rearRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         frontRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        liftArm.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        leftArm.setPosition(0.5);
+        rightArm.setPosition(0.5);
     }
  }
 
