@@ -47,9 +47,9 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Testbot Teleop Arcade", group="Testbot")
+@TeleOp(name="Testbot Teleop Arcade - To controllers", group="Testbot")
 //@Disabled
-public class TestbotTeleopArcade extends LinearOpMode {
+public class TestbotTeleopArcadeDualCtrl extends LinearOpMode {
 
     /* Declare OpMode members. */
     HardwareTestbot robot           = new HardwareTestbot();   // Use a Pushbot's hardware
@@ -124,9 +124,9 @@ public class TestbotTeleopArcade extends LinearOpMode {
             robot.frontRightDrive.setPower(right);
 
             // Use gamepad left & right Bumpers to open and close the claw
-            if (gamepad1.right_bumper)
+            if (gamepad2.right_bumper)
                 clawOffset += CLAW_SPEED;
-            else if (gamepad1.left_bumper)
+            else if (gamepad2.left_bumper)
                 clawOffset -= CLAW_SPEED;
 
             // Move both servos to new position.  Assume servos are mirror image of each other.
@@ -135,9 +135,9 @@ public class TestbotTeleopArcade extends LinearOpMode {
             robot.rightArm.setPosition(MID_SERVO - clawOffset);
 
             // Use gamepad buttons to move arm up (Y) and down (A)
-            if (gamepad1.a)
+            if (gamepad2.a)
                 robot.liftArm.setPower(ARM_UP_POWER);
-            else if (gamepad1.y)
+            else if (gamepad2.y)
                 robot.liftArm.setPower(ARM_DOWN_POWER);
             else
                 robot.liftArm.setPower(0.0);

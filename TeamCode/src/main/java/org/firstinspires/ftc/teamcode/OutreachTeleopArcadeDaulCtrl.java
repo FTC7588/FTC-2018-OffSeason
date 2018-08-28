@@ -47,18 +47,15 @@ import com.qualcomm.robotcore.util.Range;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Testbot Teleop Arcade", group="Testbot")
+@TeleOp(name="Outreach: Teleop Arcade - Two Controllers", group="Outreach")
 //@Disabled
-public class TestbotTeleopArcade extends LinearOpMode {
+public class OutreachTeleopArcadeDaulCtrl extends LinearOpMode {
 
     /* Declare OpMode members. */
-    HardwareTestbot robot           = new HardwareTestbot();   // Use a Pushbot's hardware
+    HardwareOutreach robot           = new HardwareOutreach();   // Use a Pushbot's hardware
                                                                // could also use HardwarePushbotMatrix class.
     double          clawOffset      = 0;                       // Servo mid position
-    final double    CLAW_SPEED      = 0.1 ;                   // sets rate to move servo
-    final double MID_SERVO = 0.5;
-    final double ARM_UP_POWER = 0.5;
-    final double ARM_DOWN_POWER = -0.5;
+    final double    CLAW_SPEED      = 0.05 ;                   // sets rate to move servo
 
     @Override
     public void runOpMode() {
@@ -118,31 +115,30 @@ public class TestbotTeleopArcade extends LinearOpMode {
             }
 
             // Output the safe vales to the motor drives.
-            robot.rearLeftDrive.setPower(left);
-            robot.rearRightDrive.setPower(right);
-            robot.frontLeftDrive.setPower(left);
-            robot.frontRightDrive.setPower(right);
+            robot.leftDrive.setPower(left);
+            robot.rightDrive.setPower(right);
 
             // Use gamepad left & right Bumpers to open and close the claw
-            if (gamepad1.right_bumper)
+            if (gamepad2.right_bumper)
                 clawOffset += CLAW_SPEED;
-            else if (gamepad1.left_bumper)
+            else if (gamepad2.left_bumper)
                 clawOffset -= CLAW_SPEED;
 
             // Move both servos to new position.  Assume servos are mirror image of each other.
             clawOffset = Range.clip(clawOffset, 0, 0.5);
-            robot.leftArm.setPosition(MID_SERVO + clawOffset);
-            robot.rightArm.setPosition(MID_SERVO - clawOffset);
+            robot.leftClaw.setPosition(robot.MID_SERVO + clawOffset);
+            robot.rightClaw.setPosition(robot.MID_SERVO - clawOffset);
 
             // Use gamepad buttons to move arm up (Y) and down (A)
-            if (gamepad1.a)
-                robot.liftArm.setPower(ARM_UP_POWER);
-            else if (gamepad1.y)
-                robot.liftArm.setPower(ARM_DOWN_POWER);
+            if (gamepad2.a)
+                robot.leftArm.setPower(robot.ARM_UP_POWER);
+            else if (gamepad2.y)
+                robot.leftArm.setPower(robot.ARM_DOWN_POWER);
             else
-                robot.liftArm.setPower(0.0);
+                robot.leftArm.setPower(0.0);
 
             // Send telemetry message to signify robot running;
+            telemetry.addData("claw",  "Offset = %.2f", clawOffset);
             telemetry.addData("left",  "%.2f", left);
             telemetry.addData("right", "%.2f", right);
             telemetry.update();
