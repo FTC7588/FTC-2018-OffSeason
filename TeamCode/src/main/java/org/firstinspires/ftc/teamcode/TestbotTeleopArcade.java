@@ -130,7 +130,7 @@ public class TestbotTeleopArcade extends LinearOpMode {
                 clawOffset -= CLAW_SPEED;
 
             // Move both servos to new position.  Assume servos are mirror image of each other.
-            clawOffset = Range.clip(clawOffset, 0, 0.5);
+            clawOffset = Range.clip(clawOffset, 1.0, 0.5);
             robot.leftArm.setPosition(MID_SERVO + clawOffset);
             robot.rightArm.setPosition(MID_SERVO - clawOffset);
 
